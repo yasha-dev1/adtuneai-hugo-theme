@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes blob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(20px, -30px) scale(1.1); }
+            50% { transform: translate(-20px, 20px) scale(0.9); }
+            75% { transform: translate(30px, 30px) scale(1.05); }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animate-shimmer {
+            animation: shimmer 2s infinite;
+        }
+
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+
+        .animate-gradient {
+            background-size: 200% auto;
+            animation: gradient 3s infinite;
+        }
+    </style>
+</head>
+<body class="bg-black text-white antialiased min-h-screen flex flex-col">
+    {{ partial "nav.html" . }}
+    <main class="flex-grow">
+        {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+
+    <script>
+        // Pricing toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.querySelector('[data-pricing-toggle]');
+            if (toggleButton) {
+                const monthlyPrices = document.querySelectorAll('[data-price-monthly]');
+                const annualPrices = document.querySelectorAll('[data-price-annual]');
+                
+                toggleButton.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const isAnnual = this.classList.contains('active');
+                    
+                    monthlyPrices.forEach(el => {
+                        el.style.display = isAnnual ? 'none' : 'block';
+                    });
+                    
+                    annualPrices.forEach(el => {
+                        el.style.display = isAnnual ? 'block' : 'none';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

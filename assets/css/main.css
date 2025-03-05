@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-black text-white;
+    }
+}
+
+@layer components {
+    .nav-link {
+        @apply text-gray-300 hover:text-blue-400 transition-colors;
+    }
+    .nav-link.active {
+        @apply text-white;
+    }
+}

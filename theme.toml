@@ -1,0 +1,12 @@
+name = "AdTuneAI Hugo Theme"
+license = "MIT"
+licenselink = "https://github.com/yourusername/adtuneai-hugo-theme/blob/master/LICENSE"
+description = "A modern Hugo theme for AdTuneAI"
+homepage = "http://example.com/"
+tags = ["company", "landing", "modern", "responsive"]
+features = ["responsive", "tailwind"]
+min_version = "0.41.0"
+
+[author]
+  name = "Your Name"
+  homepage = "https://example.com"
